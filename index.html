@@ -197,15 +197,61 @@
             font-weight: 300;
         }
 
+        /* Schedule */
+        .schedule {
+            display: flex;
+            justify-content: center;
+            gap: clamp(20px, 5vw, 50px);
+            margin-top: 15px;
+            opacity: 0;
+            animation: fade-in 1s 1.9s forwards;
+        }
+        .schedule-item {
+            font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+            color: rgba(255,255,255,0.45);
+        }
+        .schedule-time {
+            color: var(--gold);
+            font-family: var(--font-serif);
+            font-weight: 600;
+            font-size: clamp(0.85rem, 1.8vw, 1rem);
+            margin-right: 6px;
+        }
+        .schedule-note {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.3);
+            margin-top: 5px;
+        }
+
+        /* Footer link */
+        .footer-link {
+            margin-top: 35px;
+            opacity: 0;
+            animation: fade-in 1s 2.2s forwards;
+        }
+        .footer-link a {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 2px;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .footer-link a:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
         /* Coming soon */
         .coming-soon {
-            margin-top: 40px;
+            margin-top: 30px;
             font-size: 0.7rem;
             letter-spacing: 0.35em;
             color: rgba(197,160,89,0.4);
             text-transform: uppercase;
             opacity: 0;
-            animation: fade-in 1s 2s forwards;
+            animation: fade-in 1s 2.4s forwards;
         }
 
         /* Decorative lines */
@@ -304,11 +350,20 @@
         </div>
 
         <div class="event-info">
-            <p class="event-date">令和9年1月23日（土）15:00〜</p>
+            <p class="event-date">令和9年1月23日（土）</p>
             <p class="event-venue">ANAクラウンプラザホテルグランコート名古屋</p>
+            <div class="schedule">
+                <div class="schedule-item"><span class="schedule-time">15:00〜</span>記念式典</div>
+                <div class="schedule-item"><span class="schedule-time">17:00〜</span>懇親会</div>
+            </div>
+            <p class="schedule-note">※開始時間は予定です</p>
         </div>
 
         <p class="coming-soon">Special Site Coming Soon</p>
+
+        <div class="footer-link">
+            <a href="https://www.meiseizei.gr.jp/" target="_blank">名古屋青年税理士連盟 公式サイト →</a>
+        </div>
     </div>
 
     <script>
