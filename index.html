@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名古屋青年税理士連盟 創立60周年記念特設サイト</title>
+    
+    <!-- SEO & Meta Description -->
+    <meta name="description" content="名古屋青年税理士連盟は創立60周年を迎えます。これまでの60年の歩みと感謝、そして次世代への想い、記念式典・事業の詳細をご紹介する特設サイトです。">
+
+    <!-- OGP Settings -->
+    <meta property="og:title" content="名古屋青年税理士連盟 創立60周年記念特設サイト">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.meiseizei.gr.jp/60th/">
+    <meta property="og:image" content="https://i.gyazo.com/7b3cf139b39d36ab37201fab1af70d08.jpg">
+    <meta property="og:description" content="信頼の60年、未来へ。名古屋青年税理士連盟創立60周年記念特設サイトです。">
+    <meta property="og:site_name" content="名古屋青年税理士連盟">
+    <meta property="og:locale" content="ja_JP">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://www.meiseizei.gr.jp/favicon.ico">
+    <link rel="apple-touch-icon" href="https://i.gyazo.com/7b3cf139b39d36ab37201fab1af70d08.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- ライブラリの読み込み (Lenis, GSAP) -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- CSSの読み込み -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="loader-logo">
+            <span>Meiseizei 60th</span>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <div class="container">
+            <a href="#" class="logo">名古屋青年税理士連盟 <span>60th</span></a>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#mission" class="nav-link">Mission</a></li>
+                    <li><a href="#history" class="nav-link">History</a></li>
+                    <li><a href="#message" class="nav-link">Message</a></li>
+                    <li><a href="#ceremony" class="nav-link">Ceremony</a></li>
+                    <li><a href="#contribution" class="nav-link">Contribution</a></li>
+                    <li><a href="#special" class="nav-link">Special</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="scene-container">
+                <div class="carousel" id="carousel">
+                    <!-- Cards will be injected by JS based on config.js -->
+                </div>
+            </div>
+
+            <div class="bg-pattern"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h2 class="hero-title">
+                        <span class="line"><span class="hero-text-anim">ここから、</span></span>
+                        <span class="line"><span class="hero-text-anim">次の60年。</span></span>
+                    </h2>
+                    <p class="hero-subtitle">Nagoya Young Certified Public Tax Accountants Federation</p>
+                    <p class="hero-description">名古屋青年税理士連盟 創立60周年特設サイト</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section id="mission">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <span class="section-label">01 / Mission</span>
+                    <h3 class="section-title">理念の三本柱</h3>
+                    <p style="margin-top: 20px; color: #666;">名古屋青年税理士連盟は、<br>時代が変わっても揺るがない3つの柱を軸に活動しています。</p>
+                </div>
+
+                <div class="mission-grid">
+                    <div class="mission-card gsap-mission-card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 5v14c0 1.1.9 2 2 2h14l4 4V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2zm4 0h12v13.15l-1.53-1.53-.74-.73L15 15.15V6H6v12h10v2H6c-.55 0-1-.45-1-1V5z"/></svg>
+                        </div>
+                        <h3>研鑽</h3>
+                        <p>専門家としての知識と能力を高め続ける。次世代育成とアカデミック・コラボレーションを通じて、税理士としての資質向上を図ります。</p>
+                    </div>
+                    <div class="mission-card gsap-mission-card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        </div>
+                        <h3>親睦</h3>
+                        <p>会員相互の理解と信頼を深める。全国大会との連動や地域を超えたネットワーク構築により、強固な絆を育みます。</p>
+                    </div>
+                    <div class="mission-card gsap-mission-card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2zm0 2.8L19.2 12H18v8h-4v-6H10v6H6v-8H4.8L12 4.8z"/></svg>
+                        </div>
+                        <h3>制度改善</h3>
+                        <p>税制及び税理士制度の発展に寄与する。DX推進と戦略的な広報活動により、社会に対する発信力を強化します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section id="history" class="history-section">
+            <div class="container">
+                <div class="section-header fade-in-up" style="text-align: center; margin: 0 auto 80px;">
+                    <span class="section-label">02 / History</span>
+                    <h3 class="section-title">60年の歩み</h3>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-line"></div>
+
+                    <div class="timeline-item gsap-timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-year">1964</span>
+                            <div class="timeline-card">
+                                <h4>名古屋青年税理士連盟 創立</h4>
+                                <p>若手税理士による研鑽と親睦の場として発足。熱き志を持った創設メンバーにより、現在の礎が築かれました。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item gsap-timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-year">20××</span>
+                            <div class="timeline-card">
+                                <h4>（仮）出来事タイトル</h4>
+                                <p>後でここに何か特徴的な事柄を入れる予定。後でここに何か特徴的な事柄を入れる予定。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item gsap-timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-year">20××</span>
+                            <div class="timeline-card">
+                                <h4>（仮）出来事タイトル</h4>
+                                <p>後でここに何か特徴的な事柄を入れる予定。後でここに何か特徴的な事柄を入れる予定。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item gsap-timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-year">20××</span>
+                            <div class="timeline-card">
+                                <h4>（仮）出来事タイトル</h4>
+                                <p>後でここに何か特徴的な事柄を入れる予定。後でここに何か特徴的な事柄を入れる予定。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item gsap-timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-year">2026</span>
+                            <div class="timeline-card">
+                                <h4>創立60周年記念事業</h4>
+                                <p>テーマは「〇〇〇〇」。DXと広報の進化を掲げ、未来の税理士像を模索する新たなプロジェクトが始動。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Message Section -->
+        <section id="message" class="message-section">
+            <div class="container">
+                <div class="message-container">
+                    <div class="sticky-header fade-in-up">
+                        <span class="section-label">03 / Message</span>
+                        <h3 class="section-title">会長挨拶</h3>
+                        <p class="text-accent" style="margin-top: 15px; font-weight: 700;">President's Message</p>
+                    </div>
+                    
+                    <div class="message-content fade-in-up">
+                        <div class="quote-icon">“</div>
+                        
+                        <img src="https://i.gyazo.com/17684d6d96ee6e383c1739bd64fd1e06.png" alt="会長写真" class="president-photo">
+
+                        <h4 style="font-size: 1.2rem; margin-bottom: 20px; font-family: var(--font-serif);">伝統を継承し、革新へ挑む。</h4>
+                        <p>
+                            名古屋青年税理士連盟は創立60周年を迎えました...（略）
+                        </p>
+                        <div style="text-align: right; margin-top: 30px; clear: both;">
+                            <p style="font-weight: 700;">名古屋青年税理士連盟<br>会長 大澤 輝高</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ceremony Section -->
+        <section id="ceremony">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <span class="section-label">04 / Ceremony</span>
+                    <h3 class="section-title">記念式典のご案内</h3>
+                </div>
+
+                <div class="ceremony-card fade-in-up">
+                    <div class="ceremony-info">
+                        <dl>
+                            <dt>日時</dt>
+                            <dd>令和9年1月23日（土）</dd>
+                            
+                            <dt>場所</dt>
+                            <dd>
+                                ANAクラウンプラザホテルグランコート名古屋<br>
+                                <span style="font-size: 0.85rem; color: #666;">〒460-0023 愛知県名古屋市中区金山町1-1-1</span>
+                            </dd>
+
+                            <dt>スケジュール</dt>
+                            <dd>
+                                <ul class="ceremony-schedule">
+                                    <li><span class="time">15:00</span> 式典開始（受付 14:30〜）</li>
+                                    <li><span class="time">17:00</span> 懇親会開始</li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        
+                        <div class="ceremony-action">
+                            <a href="#" target="_blank" class="btn-primary">
+                                記念式典に参加登録する
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                            </a>
+                            <p class="note">※Googleフォームへ移動します</p>
+                        </div>
+
+                    </div>
+                    <div class="ceremony-image">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=ANA%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%97%E3%83%A9%E3%82%B6%E3%83%9B%E3%83%86%E3%83%AB%E3%82%B0%E3%83%A9%E3%83%B3%E3%82%B3%E3%83%BC%E3%83%88%E5%90%8D%E5%8F%A4%E5%B1%8B&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contribution Section -->
+        <section id="contribution" style="background-color: var(--color-bg-alt);">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <span class="section-label">05 / Contribution</span>
+                    <h3 class="section-title">ご祝儀・ご協賛のお願い</h3>
+                </div>
+
+                <!-- 合計金額カウンター (新規追加) -->
+                <div class="total-amount-container fade-in-up">
+                    <p class="total-label">現在のご協賛総額</p>
+                    <div class="total-amount-display">
+                        <span id="total-amount">0</span>
+                        <span class="currency">円</span>
+                    </div>
+                    <a href="sponsors.html" class="sponsors-link">ご協賛いただいた皆様（芳名一覧） &rarr;</a>
+                </div>
+
+                <div class="contribution-grid">
+                    <div class="contribution-box fade-in-up">
+                        <h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-accent);"><path d="M2 20h20v-2H2v2zm2-3h2v-9H4v9zm5 0h2v-9H9v9zm5 0h2v-9h-2v9zm5 0h2v-9h-2v9zM2 7l10-5 10 5v2H2V7z"/></svg>
+                            銀行振込
+                        </h4>
+                        <div class="bank-info">
+                            <table>
+                                <tr><th>銀行名</th><td>〇〇銀行</td></tr>
+                                <tr><th>支店名</th><td>〇〇支店</td></tr>
+                                <tr><th>口座種別</th><td>普通</td></tr>
+                                <tr><th>口座番号</th><td>1234567</td></tr>
+                                <tr><th>口座名義</th><td>メイセイゼイ 60シュウネン</td></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="contribution-box fade-in-up">
+                        <h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-accent);"><path d="M5 2c-1.657 0-3 1.343-3 3v1h1c1.104 0 2 .896 2 2v2c0 1.104-.896 2-2 2H2v7c0 1.657 1.343 3 3 3h14c1.657 0 3-1.343 3-3V5c0-1.657-1.343-3-3-3H5zm7 6c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z"/></svg>
+                            PayPay
+                        </h4>
+                        <div class="paypay-qr">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="PayPay QR Code">
+                        </div>
+                        <p style="font-size: 0.9rem; color: #666;">スキャンして送金をお願いします</p>
+
+                        <div class="paypay-link-container">
+                            <p style="margin: 15px 0 10px; font-size: 0.85rem; font-weight: 700;">または</p>
+                            <a href="#" target="_blank" class="btn-paypay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                                PayPayアプリで送る
+                            </a>
+                            <p class="note">※タップするとPayPayアプリが起動します</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Section -->
+        <section id="special" class="special-section">
+             <div class="container">
+                <div class="section-header fade-in-up">
+                    <span class="section-label">06 / Special Contents</span>
+                    <h3 class="section-title">記念コンテンツ</h3>
+                </div>
+
+                <div class="special-grid">
+                    <a href="past-presidents.html" class="special-card fade-in-up">
+                        <h4>歴代会長挨拶</h4>
+                        <p>Past Presidents' Messages</p>
+                        <span class="special-link-text">一覧を見る</span>
+                    </a>
+
+                    <!-- 芳名一覧へのリンクも追加 -->
+                    <a href="sponsors.html" class="special-card fade-in-up">
+                        <h4>ご協賛者芳名一覧</h4>
+                        <p>List of Sponsors</p>
+                        <span class="special-link-text">一覧を見る</span>
+                    </a>
+
+                    <a href="magazine-dummy.pdf" target="_blank" class="special-card fade-in-up">
+                        <h4>60周年記念誌</h4>
+                        <p>60th Anniversary Magazine (PDF)</p>
+                        <span class="special-link-text">ダウンロード</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container fade-in-up">
+            <div class="footer-bottom">
+                <p>&copy; Nagoya Young Certified Public Tax Accountants Federation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="ページトップへ戻る">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close"><span></span><span></span></div>
+        <img src="" alt="拡大画像" class="lightbox-img" id="lightbox-img">
+    </div>
+
+    <!-- JSの読み込み -->
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
