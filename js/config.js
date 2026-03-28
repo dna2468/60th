@@ -4,14 +4,14 @@
 const SITE_CONFIG = {
     // 3Dカルーセル画像
     carouselImages: [
-        "https://i.gyazo.com/7b3cf139b39d36ab37201fab1af70d08.jpg",
-        "https://i.gyazo.com/97d6f85b69c33fbfb01b6d2a645685cb.jpg",
-        "https://i.gyazo.com/3a7446c2216037a84fbd455d643cfac3.jpg",
-        "https://i.gyazo.com/e084a288d16a3a3a2af666f0afe22257.jpg",
-        "https://i.gyazo.com/b94b5321b8bec317c57fe45e4b7decd9.jpg",
-        "https://i.gyazo.com/d98a211a9d565a8a005670ce5a29cbd1.jpg",
-        "https://i.gyazo.com/00f66847cc8769ce3f945d57fcbb22e1.png",
-        "https://i.gyazo.com/fc934236ebde36f761f36045e3f05792.jpg"
+        "images/carousel/01.jpg",
+        "images/carousel/02.jpg",
+        "images/carousel/03.jpg",
+        "images/carousel/04.jpg",
+        "images/carousel/05.jpg",
+        "images/carousel/06.jpg",
+        "images/carousel/07.png",
+        "images/carousel/08.jpg"
     ],
 
     autoSpeed: { pc: 0.1, sp: 0.08 },
