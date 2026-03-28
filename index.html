@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>名古屋青年税理士連盟 創立60周年記念特設サイト</title>
-    
-    <!-- SEO & Meta Description -->
-    <meta name="description" content="名古屋青年税理士連盟は創立60周年を迎えます。これまでの60年の歩みと感謝、そして次世代への想い、記念式典・事業の詳細をご紹介する特設サイトです。">
-
-    <!-- OGP Settings -->
+    <meta name="description" content="名古屋青年税理士連盟は創立60周年を迎えます。記念式典は令和9年1月23日（土）ANAクラウンプラザホテルグランコート名古屋にて開催。">
     <meta property="og:title" content="名古屋青年税理士連盟 創立60周年記念特設サイト">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.meiseizei.gr.jp/60th/">
@@ -17,364 +12,346 @@
     <meta property="og:description" content="信頼の60年、未来へ。名古屋青年税理士連盟創立60周年記念特設サイトです。">
     <meta property="og:site_name" content="名古屋青年税理士連盟">
     <meta property="og:locale" content="ja_JP">
-
-    <!-- Favicon -->
     <link rel="icon" href="images/favicon.ico">
     <link rel="apple-touch-icon" href="images/og-image.jpg">
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <!-- ライブラリの読み込み (Lenis, GSAP) -->
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        :root {
+            --gold: #C5A059;
+            --gold-light: #d4b36a;
+            --dark: #0a0a0a;
+            --dark-card: rgba(255,255,255,0.04);
+            --font-sans: 'Noto Sans JP', sans-serif;
+            --font-serif: 'Shippori Mincho', serif;
+        }
 
-    <!-- CSSの読み込み -->
-    <link rel="stylesheet" href="css/style.css">
+        body {
+            font-family: var(--font-sans);
+            background: var(--dark);
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Background */
+        .bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(197,160,89,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(197,160,89,0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(197,160,89,0.04) 0%, transparent 50%);
+        }
+
+        .bg-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            overflow: hidden; pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            width: 3px; height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float-up linear infinite;
+        }
+
+        @keyframes float-up {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.3; }
+            100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+        }
+
+        /* Main content */
+        .container {
+            position: relative; z-index: 10;
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        /* Organization name */
+        .org-name {
+            font-family: var(--font-serif);
+            font-size: clamp(0.85rem, 2vw, 1.1rem);
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fade-in 1s 0.5s forwards;
+        }
+
+        /* Anniversary badge */
+        .anniversary {
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fade-in 1s 0.8s forwards;
+        }
+        .anniversary-number {
+            font-family: var(--font-serif);
+            font-size: clamp(5rem, 15vw, 10rem);
+            font-weight: 600;
+            line-height: 1;
+            color: transparent;
+            background: linear-gradient(135deg, var(--gold) 0%, #e8d5a3 40%, var(--gold) 60%, #b8923e 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            filter: drop-shadow(0 0 40px rgba(197,160,89,0.2));
+        }
+        .anniversary-sub {
+            font-size: clamp(0.8rem, 2vw, 1.1rem);
+            font-weight: 700;
+            letter-spacing: 0.4em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-top: -5px;
+        }
+
+        /* Catchcopy */
+        .catchcopy {
+            font-family: var(--font-serif);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 600;
+            line-height: 1.6;
+            letter-spacing: 0.1em;
+            margin: 35px 0 50px;
+            opacity: 0;
+            animation: fade-in 1s 1.1s forwards;
+        }
+
+        /* Countdown */
+        .countdown-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: fade-in 1s 1.4s forwards;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: clamp(10px, 3vw, 25px);
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fade-in 1s 1.4s forwards;
+        }
+        .countdown-item {
+            background: var(--dark-card);
+            border: 1px solid rgba(197,160,89,0.15);
+            border-radius: 8px;
+            padding: clamp(12px, 2vw, 20px) clamp(15px, 3vw, 28px);
+            min-width: clamp(60px, 10vw, 90px);
+            backdrop-filter: blur(10px);
+        }
+        .countdown-value {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 600;
+            color: var(--gold);
+            line-height: 1;
+        }
+        .countdown-unit {
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.4);
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+
+        /* Event info */
+        .event-info {
+            border-top: 1px solid rgba(197,160,89,0.15);
+            padding-top: 30px;
+            opacity: 0;
+            animation: fade-in 1s 1.7s forwards;
+        }
+        .event-date {
+            font-family: var(--font-serif);
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+        .event-venue {
+            font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+            color: rgba(255,255,255,0.5);
+            font-weight: 300;
+        }
+
+        /* Coming soon */
+        .coming-soon {
+            margin-top: 40px;
+            font-size: 0.7rem;
+            letter-spacing: 0.35em;
+            color: rgba(197,160,89,0.4);
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fade-in 1s 2s forwards;
+        }
+
+        /* Decorative lines */
+        .deco-line {
+            width: 40px; height: 1px;
+            background: var(--gold);
+            margin: 0 auto 30px;
+            opacity: 0.3;
+            opacity: 0;
+            animation: fade-in 1s 1s forwards, line-expand 1.5s 1s forwards;
+        }
+
+        @keyframes fade-in {
+            to { opacity: 1; }
+        }
+        @keyframes line-expand {
+            from { width: 0; }
+            to { width: 40px; opacity: 0.3; }
+        }
+
+        /* Corner decorations */
+        .corner {
+            position: fixed;
+            width: 80px; height: 80px;
+            z-index: 5;
+            opacity: 0;
+            animation: fade-in 1.5s 2.5s forwards;
+        }
+        .corner::before, .corner::after {
+            content: '';
+            position: absolute;
+            background: var(--gold);
+            opacity: 0.15;
+        }
+        .corner-tl { top: 30px; left: 30px; }
+        .corner-tl::before { top: 0; left: 0; width: 30px; height: 1px; }
+        .corner-tl::after { top: 0; left: 0; width: 1px; height: 30px; }
+        .corner-tr { top: 30px; right: 30px; }
+        .corner-tr::before { top: 0; right: 0; width: 30px; height: 1px; }
+        .corner-tr::after { top: 0; right: 0; width: 1px; height: 30px; }
+        .corner-bl { bottom: 30px; left: 30px; }
+        .corner-bl::before { bottom: 0; left: 0; width: 30px; height: 1px; }
+        .corner-bl::after { bottom: 0; left: 0; width: 1px; height: 30px; }
+        .corner-br { bottom: 30px; right: 30px; }
+        .corner-br::before { bottom: 0; right: 0; width: 30px; height: 1px; }
+        .corner-br::after { bottom: 0; right: 0; width: 1px; height: 30px; }
+
+        @media (max-width: 480px) {
+            .corner { display: none; }
+            .catchcopy { margin: 25px 0 35px; }
+            .event-info { padding-top: 25px; }
+            .coming-soon { margin-top: 30px; }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="bg"></div>
+    <div class="bg-grid"></div>
+    <div class="particles" id="particles"></div>
 
-    <!-- Loading Screen -->
-    <div class="loader">
-        <div class="loader-logo">
-            <span>Meiseizei 60th</span>
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="container">
+        <p class="org-name">名古屋青年税理士連盟</p>
+
+        <div class="anniversary">
+            <div class="anniversary-number">60<span style="font-size: 0.4em; vertical-align: super;">th</span></div>
+            <div class="anniversary-sub">Anniversary</div>
         </div>
+
+        <div class="deco-line"></div>
+
+        <h1 class="catchcopy">ここから、次の60年。</h1>
+
+        <p class="countdown-label">記念式典まで</p>
+        <div class="countdown" id="countdown">
+            <div class="countdown-item">
+                <div class="countdown-value" id="cd-days">---</div>
+                <div class="countdown-unit">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="cd-hours">--</div>
+                <div class="countdown-unit">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="cd-mins">--</div>
+                <div class="countdown-unit">Min</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="cd-secs">--</div>
+                <div class="countdown-unit">Sec</div>
+            </div>
+        </div>
+
+        <div class="event-info">
+            <p class="event-date">令和9年1月23日（土）15:00〜</p>
+            <p class="event-venue">ANAクラウンプラザホテルグランコート名古屋</p>
+        </div>
+
+        <p class="coming-soon">Special Site Coming Soon</p>
     </div>
 
-    <header class="site-header">
-        <div class="container">
-            <a href="#" class="logo">名古屋青年税理士連盟 <span>60th</span></a>
-            
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#mission" class="nav-link">Mission</a></li>
-                    <li><a href="#history" class="nav-link">History</a></li>
-                    <li><a href="#message" class="nav-link">Message</a></li>
-                    <li><a href="#ceremony" class="nav-link">Ceremony</a></li>
-                    <li><a href="#contribution" class="nav-link">Contribution</a></li>
-                    <li><a href="#special" class="nav-link">Special</a></li>
-                </ul>
-            </nav>
+    <script>
+        // Countdown Timer — Target: 2027-01-23 15:00 JST
+        const target = new Date('2027-01-23T15:00:00+09:00').getTime();
 
-            <button class="nav-toggle" aria-label="メニューを開閉">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
+        function updateCountdown() {
+            const now = Date.now();
+            const diff = target - now;
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="scene-container">
-                <div class="carousel" id="carousel">
-                    <!-- Cards will be injected by JS based on config.js -->
-                </div>
-            </div>
+            if (diff <= 0) {
+                document.getElementById('cd-days').textContent = '0';
+                document.getElementById('cd-hours').textContent = '0';
+                document.getElementById('cd-mins').textContent = '0';
+                document.getElementById('cd-secs').textContent = '0';
+                return;
+            }
 
-            <div class="bg-pattern"></div>
-            <div class="container">
-                <div class="hero-content">
-                    <h2 class="hero-title">
-                        <span class="line"><span class="hero-text-anim">ここから、</span></span>
-                        <span class="line"><span class="hero-text-anim">次の60年。</span></span>
-                    </h2>
-                    <p class="hero-subtitle">Nagoya Young Certified Public Tax Accountants Federation</p>
-                    <p class="hero-description">名古屋青年税理士連盟 創立60周年特設サイト</p>
-                </div>
-            </div>
-        </section>
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
 
-        <!-- Mission Section -->
-        <section id="mission">
-            <div class="container">
-                <div class="section-header fade-in-up">
-                    <span class="section-label">01 / Mission</span>
-                    <h3 class="section-title">理念の三本柱</h3>
-                    <p style="margin-top: 20px; color: #666;">約570名を超える会員で構成される名古屋青年税理士連盟は、<br>時代が変わっても揺るがない3つの柱を軸に活動しています。</p>
-                </div>
+            document.getElementById('cd-days').textContent = days;
+            document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+            document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+        }
 
-                <div class="mission-grid">
-                    <div class="mission-card gsap-mission-card">
-                        <div class="card-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5v14c0 1.1.9 2 2 2h14l4 4V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2zm4 0h12v13.15l-1.53-1.53-.74-.73L15 15.15V6H6v12h10v2H6c-.55 0-1-.45-1-1V5z"/></svg>
-                        </div>
-                        <h3>研鑽</h3>
-                        <p>税法研究論文の発行、大学との税法ディベート大会、専門家を招いた研修会の開催を通じ、税理士としての知識と実務能力を磨き続けます。</p>
-                    </div>
-                    <div class="mission-card gsap-mission-card">
-                        <div class="card-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                        </div>
-                        <h3>親睦</h3>
-                        <p>新入会員歓迎会や懇親行事、レクリエーションを通じて会員相互の理解と信頼を深め、世代を超えた支え合いの文化を育んでいます。</p>
-                    </div>
-                    <div class="mission-card gsap-mission-card">
-                        <div class="card-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2zm0 2.8L19.2 12H18v8h-4v-6H10v6H6v-8H4.8L12 4.8z"/></svg>
-                        </div>
-                        <h3>制度改善</h3>
-                        <p>税理士制度の調査研究と提言活動を推進。全青税シンポジウムでの発表や広報誌の発行を通じ、社会への発信力を高めています。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
 
-        <!-- History Section -->
-        <section id="history" class="history-section">
-            <div class="container">
-                <div class="section-header fade-in-up" style="text-align: center; margin: 0 auto 80px;">
-                    <span class="section-label">02 / History</span>
-                    <h3 class="section-title">60年の歩み</h3>
-                </div>
-
-                <div class="timeline">
-                    <div class="timeline-line"></div>
-
-                    <div class="timeline-item gsap-timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-year timeline-era">創成期</span>
-                            <div class="timeline-card">
-                                <h4>志を同じくする仲間たちの船出 <span class="era-years">1967〜1970s</span></h4>
-                                <p>昭和42年、名古屋の若手税理士たちが「研鑽」と「親睦」を旗印に集結。研修会や懇親行事を重ねながら、組織の基盤を築いた草創の時代。</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item gsap-timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-year timeline-era">発展期</span>
-                            <div class="timeline-card">
-                                <h4>活動領域の拡大と組織の成熟 <span class="era-years">1980s〜1990s</span></h4>
-                                <p>会員数の増加とともに制度部・研究部の活動が本格化。税法研究の論文発行や税理士制度への提言活動を開始し、専門家集団としての存在感を高めていった。</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item gsap-timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-year timeline-era">飛躍期</span>
-                            <div class="timeline-card">
-                                <h4>対外発信と半世紀の節目 <span class="era-years">2000s〜2010s</span></h4>
-                                <p>大学との連携による税法ディベート大会の創設、広報誌「MeiSeiZei」の刊行、全青税シンポジウムでの発表活動など、社会への発信力を大きく強化。2017年1月には50周年記念式典を盛大に開催。</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item gsap-timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-year timeline-era">次世代へ</span>
-                            <div class="timeline-card">
-                                <h4>ここから、次の60年。 <span class="era-years">2020s〜</span></h4>
-                                <p>約570名の会員を擁する組織へと成長。DX推進と戦略的広報を新たな柱に掲げ、2027年1月、創立60周年記念事業が始動。未来の税理士像を模索する挑戦が始まる。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Message Section -->
-        <section id="message" class="message-section">
-            <div class="container">
-                <div class="message-container">
-                    <div class="sticky-header fade-in-up">
-                        <span class="section-label">03 / Message</span>
-                        <h3 class="section-title">会長挨拶</h3>
-                        <p class="text-accent" style="margin-top: 15px; font-weight: 700;">President's Message</p>
-                    </div>
-                    
-                    <div class="message-content fade-in-up">
-                        <div class="quote-icon">“</div>
-                        
-                        <img src="images/president.png" alt="会長写真" class="president-photo">
-
-                        <h4 style="font-size: 1.2rem; margin-bottom: 20px; font-family: var(--font-serif);">伝統を継承し、革新へ挑む。</h4>
-                        <p>
-                            名古屋青年税理士連盟は創立60周年を迎えました...（略）
-                        </p>
-                        <div style="text-align: right; margin-top: 30px; clear: both;">
-                            <p style="font-weight: 700;">名古屋青年税理士連盟<br>会長 大澤 輝高</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Ceremony Section -->
-        <section id="ceremony">
-            <div class="container">
-                <div class="section-header fade-in-up">
-                    <span class="section-label">04 / Ceremony</span>
-                    <h3 class="section-title">記念式典のご案内</h3>
-                </div>
-
-                <div class="ceremony-card fade-in-up">
-                    <div class="ceremony-info">
-                        <dl>
-                            <dt>日時</dt>
-                            <dd>令和9年1月23日（土）</dd>
-                            
-                            <dt>場所</dt>
-                            <dd>
-                                ANAクラウンプラザホテルグランコート名古屋<br>
-                                <span style="font-size: 0.85rem; color: #666;">〒460-0023 愛知県名古屋市中区金山町1-1-1</span>
-                            </dd>
-
-                            <dt>スケジュール</dt>
-                            <dd>
-                                <ul class="ceremony-schedule">
-                                    <li><span class="time">15:00</span> 式典開始（受付 14:30〜）</li>
-                                    <li><span class="time">17:00</span> 懇親会開始</li>
-                                </ul>
-                            </dd>
-                        </dl>
-                        
-                        <div class="ceremony-action">
-                            <a href="#" target="_blank" class="btn-primary">
-                                記念式典に参加登録する
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                            </a>
-                            <p class="note">※Googleフォームへ移動します</p>
-                        </div>
-
-                    </div>
-                    <div class="ceremony-image">
-                        <iframe
-                            src="https://maps.google.com/maps?q=ANA%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%97%E3%83%A9%E3%82%B6%E3%83%9B%E3%83%86%E3%83%AB%E3%82%B0%E3%83%A9%E3%83%B3%E3%82%B3%E3%83%BC%E3%83%88%E5%90%8D%E5%8F%A4%E5%B1%8B&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            title="ANAクラウンプラザホテルグランコート名古屋の地図"
-                            width="100%"
-                            height="100%"
-                            style="border:0;"
-                            allowfullscreen=""
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contribution Section -->
-        <section id="contribution" style="background-color: var(--color-bg-alt);">
-            <div class="container">
-                <div class="section-header fade-in-up">
-                    <span class="section-label">05 / Contribution</span>
-                    <h3 class="section-title">ご祝儀・ご協賛のお願い</h3>
-                </div>
-
-                <!-- 合計金額カウンター (新規追加) -->
-                <div class="total-amount-container fade-in-up">
-                    <p class="total-label">現在のご協賛総額</p>
-                    <div class="total-amount-display">
-                        <span id="total-amount">0</span>
-                        <span class="currency">円</span>
-                    </div>
-                    <a href="sponsors.html" class="sponsors-link">ご協賛いただいた皆様（芳名一覧） &rarr;</a>
-                </div>
-
-                <div class="contribution-grid">
-                    <div class="contribution-box fade-in-up">
-                        <h4>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-accent);"><path d="M2 20h20v-2H2v2zm2-3h2v-9H4v9zm5 0h2v-9H9v9zm5 0h2v-9h-2v9zm5 0h2v-9h-2v9zM2 7l10-5 10 5v2H2V7z"/></svg>
-                            銀行振込
-                        </h4>
-                        <div class="bank-info">
-                            <table>
-                                <tr><th>銀行名</th><td>〇〇銀行</td></tr>
-                                <tr><th>支店名</th><td>〇〇支店</td></tr>
-                                <tr><th>口座種別</th><td>普通</td></tr>
-                                <tr><th>口座番号</th><td>1234567</td></tr>
-                                <tr><th>口座名義</th><td>メイセイゼイ 60シュウネン</td></tr>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="contribution-box fade-in-up">
-                        <h4>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-accent);"><path d="M5 2c-1.657 0-3 1.343-3 3v1h1c1.104 0 2 .896 2 2v2c0 1.104-.896 2-2 2H2v7c0 1.657 1.343 3 3 3h14c1.657 0 3-1.343 3-3V5c0-1.657-1.343-3-3-3H5zm7 6c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z"/></svg>
-                            PayPay
-                        </h4>
-                        <div class="paypay-qr">
-                            <img src="images/paypay-qr.svg" alt="PayPay QR Code">
-                        </div>
-                        <p style="font-size: 0.9rem; color: #666;">スキャンして送金をお願いします</p>
-
-                        <div class="paypay-link-container">
-                            <p style="margin: 15px 0 10px; font-size: 0.85rem; font-weight: 700;">または</p>
-                            <a href="#" target="_blank" class="btn-paypay">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-                                PayPayアプリで送る
-                            </a>
-                            <p class="note">※タップするとPayPayアプリが起動します</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Special Section -->
-        <section id="special" class="special-section">
-             <div class="container">
-                <div class="section-header fade-in-up">
-                    <span class="section-label">06 / Special Contents</span>
-                    <h3 class="section-title">記念コンテンツ</h3>
-                </div>
-
-                <div class="special-grid">
-                    <a href="past-presidents.html" class="special-card fade-in-up">
-                        <h4>歴代会長挨拶</h4>
-                        <p>Past Presidents' Messages</p>
-                        <span class="special-link-text">一覧を見る</span>
-                    </a>
-
-                    <!-- 芳名一覧へのリンクも追加 -->
-                    <a href="sponsors.html" class="special-card fade-in-up">
-                        <h4>ご協賛者芳名一覧</h4>
-                        <p>List of Sponsors</p>
-                        <span class="special-link-text">一覧を見る</span>
-                    </a>
-
-                    <a href="magazine-dummy.pdf" target="_blank" class="special-card fade-in-up">
-                        <h4>60周年記念誌</h4>
-                        <p>60th Anniversary Magazine (PDF)</p>
-                        <span class="special-link-text">ダウンロード</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container fade-in-up">
-            <div class="footer-bottom">
-                <p>&copy; Nagoya Young Certified Public Tax Accountants Federation.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" aria-label="ページトップへ戻る">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-    </button>
-
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-close"><span></span><span></span></div>
-        <img src="" alt="拡大画像" class="lightbox-img" id="lightbox-img">
-    </div>
-
-    <!-- JSの読み込み -->
-    <script src="js/config.js"></script>
-    <script src="js/main.js"></script>
+        // Particles
+        const container = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDuration = (8 + Math.random() * 12) + 's';
+            p.style.animationDelay = Math.random() * 10 + 's';
+            p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
+            container.appendChild(p);
+        }
+    </script>
 </body>
 </html>
