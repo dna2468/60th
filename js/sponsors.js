@@ -26,6 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // GSAP Plugin Registration
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+    }
+
     // Generate Sponsor Lists
     if (typeof SITE_CONFIG !== 'undefined') {
         const goldList = document.getElementById('gold-sponsor-list');

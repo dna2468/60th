@@ -39,6 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const isLenisLoaded = typeof Lenis !== 'undefined';
         const isGsapLoaded = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
 
+        // --- GSAP Plugin Registration (スクロールアニメーションより前に実行) ---
+        if (isGsapLoaded) {
+            gsap.registerPlugin(ScrollTrigger);
+        }
+
         // --- Lenis (スムーススクロール) 初期化 ---
         if (isLenisLoaded) {
             const lenis = new Lenis({
@@ -89,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            gsap.registerPlugin(ScrollTrigger);
             const tl = gsap.timeline();
 
             // ヒーローセクションの文字アニメーション
