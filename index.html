@@ -192,9 +192,29 @@
             margin-bottom: 8px;
         }
         .event-venue {
-            font-size: clamp(0.8rem, 1.8vw, 0.95rem);
-            color: rgba(255,255,255,0.5);
-            font-weight: 300;
+            margin-top: 5px;
+        }
+        .event-venue a {
+            font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+            font-family: var(--font-serif);
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(197,160,89,0.3);
+            padding-bottom: 2px;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .event-venue a:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+        .event-venue-icon {
+            display: inline-block;
+            width: 14px; height: 14px;
+            margin-right: 5px;
+            vertical-align: -1px;
+            fill: var(--gold);
+            opacity: 0.7;
         }
 
         /* Schedule */
@@ -230,17 +250,32 @@
             animation: fade-in 1s 2.2s forwards;
         }
         .footer-link a {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--gold);
             text-decoration: none;
-            letter-spacing: 0.1em;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 2px;
-            transition: color 0.3s, border-color 0.3s;
+            letter-spacing: 0.08em;
+            padding: 10px 28px;
+            border: 1px solid rgba(197,160,89,0.3);
+            border-radius: 50px;
+            transition: all 0.3s;
         }
         .footer-link a:hover {
-            color: var(--gold);
+            background: rgba(197,160,89,0.1);
             border-color: var(--gold);
+        }
+        .footer-link a svg {
+            width: 14px; height: 14px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            transition: transform 0.3s;
+        }
+        .footer-link a:hover svg {
+            transform: translateX(3px);
         }
 
         /* Coming soon */
@@ -351,7 +386,11 @@
 
         <div class="event-info">
             <p class="event-date">令和9年1月23日（土）</p>
-            <p class="event-venue">ANAクラウンプラザホテルグランコート名古屋</p>
+            <p class="event-venue">
+                <a href="https://maps.google.com/maps?q=ANA%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%97%E3%83%A9%E3%82%B6%E3%83%9B%E3%83%86%E3%83%AB%E3%82%B0%E3%83%A9%E3%83%B3%E3%82%B3%E3%83%BC%E3%83%88%E5%90%8D%E5%8F%A4%E5%B1%8B" target="_blank">
+                    <svg class="event-venue-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>ANAクラウンプラザホテルグランコート名古屋
+                </a>
+            </p>
             <div class="schedule">
                 <div class="schedule-item"><span class="schedule-time">15:00〜</span>記念式典</div>
                 <div class="schedule-item"><span class="schedule-time">17:00〜</span>懇親会</div>
@@ -362,7 +401,10 @@
         <p class="coming-soon">Special Site Coming Soon</p>
 
         <div class="footer-link">
-            <a href="https://www.meiseizei.gr.jp/" target="_blank">名古屋青年税理士連盟 公式サイト →</a>
+            <a href="https://www.meiseizei.gr.jp/" target="_blank">
+                名古屋青年税理士連盟 公式サイト
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
         </div>
     </div>
 
