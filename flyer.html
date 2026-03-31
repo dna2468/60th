@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>60周年記念式典 フライヤー</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --gold: #C5A059;
+            --gold-light: #e8d5a3;
+            --dark: #0a0a0a;
+            --font-sans: 'Noto Sans JP', sans-serif;
+            --font-serif: 'Shippori Mincho', serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: #888;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: var(--dark);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        @media print {
+            .page { box-shadow: none; }
+        }
+
+        /* Background decoration */
+        .bg-pattern {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        .bg-glow {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(197,160,89,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(197,160,89,0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Corner decorations */
+        .corner { position: absolute; width: 60px; height: 60px; }
+        .corner::before, .corner::after {
+            content: ''; position: absolute; background: var(--gold); opacity: 0.25;
+        }
+        .corner-tl { top: 25px; left: 25px; }
+        .corner-tl::before { top: 0; left: 0; width: 40px; height: 1px; }
+        .corner-tl::after { top: 0; left: 0; width: 1px; height: 40px; }
+        .corner-tr { top: 25px; right: 25px; }
+        .corner-tr::before { top: 0; right: 0; width: 40px; height: 1px; }
+        .corner-tr::after { top: 0; right: 0; width: 1px; height: 40px; }
+        .corner-bl { bottom: 25px; left: 25px; }
+        .corner-bl::before { bottom: 0; left: 0; width: 40px; height: 1px; }
+        .corner-bl::after { bottom: 0; left: 0; width: 1px; height: 40px; }
+        .corner-br { bottom: 25px; right: 25px; }
+        .corner-br::before { bottom: 0; right: 0; width: 40px; height: 1px; }
+        .corner-br::after { bottom: 0; right: 0; width: 1px; height: 40px; }
+
+        /* Content */
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 50px;
+            width: 100%;
+        }
+
+        /* Organization name */
+        .org-name {
+            font-family: var(--font-serif);
+            font-size: 14pt;
+            font-weight: 400;
+            letter-spacing: 0.4em;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 25px;
+        }
+
+        /* Anniversary */
+        .anniversary-number {
+            font-family: var(--font-serif);
+            font-size: 100pt;
+            font-weight: 600;
+            line-height: 1;
+            color: var(--gold);
+            position: relative;
+        }
+        .anniversary-number .th {
+            font-size: 0.35em;
+            vertical-align: super;
+        }
+        .anniversary-sub {
+            font-size: 14pt;
+            font-weight: 700;
+            letter-spacing: 0.5em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-top: -5px;
+        }
+
+        /* Deco line */
+        .deco-line {
+            width: 50px; height: 1px;
+            background: var(--gold);
+            margin: 28px auto;
+            opacity: 0.4;
+        }
+
+        /* Catchcopy */
+        .catchcopy {
+            font-family: var(--font-serif);
+            font-size: 28pt;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            line-height: 1.5;
+            margin-bottom: 40px;
+        }
+
+        /* Event details box */
+        .event-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(197,160,89,0.2);
+            border-radius: 4px;
+            padding: 30px 40px;
+            margin: 0 auto 35px;
+            max-width: 460px;
+        }
+
+        .event-date {
+            font-family: var(--font-serif);
+            font-size: 20pt;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+        }
+
+        .event-venue {
+            font-family: var(--font-serif);
+            font-size: 12pt;
+            font-weight: 600;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 5px;
+            white-space: nowrap;
+        }
+        .event-venue-icon {
+            display: inline-block;
+            width: 13px; height: 13px;
+            vertical-align: -1px;
+            margin-right: 4px;
+            fill: var(--gold);
+            opacity: 0.7;
+        }
+        .event-address {
+            font-size: 8pt;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 18px;
+        }
+
+        .schedule {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+        .schedule-item {
+            font-size: 10pt;
+            color: rgba(255,255,255,0.5);
+        }
+        .schedule-time {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            font-size: 13pt;
+            color: var(--gold);
+            margin-right: 5px;
+        }
+        .schedule-note {
+            font-size: 7pt;
+            color: rgba(255,255,255,0.3);
+            margin-top: 8px;
+        }
+
+        /* QR Section */
+        .qr-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 10px;
+        }
+
+        .qr-code {
+            width: 100px; height: 100px;
+            background: #fff;
+            border-radius: 6px;
+            padding: 8px;
+            flex-shrink: 0;
+        }
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .qr-text {
+            text-align: left;
+        }
+        .qr-label {
+            font-size: 8pt;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .qr-url {
+            font-size: 9pt;
+            color: rgba(255,255,255,0.5);
+            word-break: break-all;
+            font-family: monospace;
+        }
+        .qr-desc {
+            font-size: 8pt;
+            color: rgba(255,255,255,0.35);
+            margin-top: 6px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .flyer-footer {
+            margin-top: 30px;
+            font-size: 8pt;
+            color: rgba(255,255,255,0.25);
+            letter-spacing: 0.1em;
+        }
+
+        /* Print button */
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-sans);
+        }
+        .print-btn:hover { background: #d4b36a; }
+
+        @media print {
+            .print-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()">PDF / 印刷</button>
+
+    <div class="page">
+        <div class="bg-pattern"></div>
+        <div class="bg-glow"></div>
+
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+
+        <div class="content">
+            <p class="org-name">名古屋青年税理士連盟</p>
+
+            <div class="anniversary-number">60<span class="th">th</span></div>
+            <div class="anniversary-sub">Anniversary</div>
+
+            <div class="deco-line"></div>
+
+            <h1 class="catchcopy">ここから、次の60年。</h1>
+
+            <div class="event-box">
+                <p class="event-date">令和9年1月23日（土）</p>
+                <p class="event-venue">
+                    <svg class="event-venue-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>ANAクラウンプラザホテルグランコート名古屋
+                </p>
+                <p class="event-address">〒460-0023 愛知県名古屋市中区金山町1-1-1</p>
+                <div class="schedule">
+                    <div class="schedule-item"><span class="schedule-time">16:00〜</span>記念式典</div>
+                    <div class="schedule-item"><span class="schedule-time">17:00〜</span>懇親会</div>
+                </div>
+                <p class="schedule-note">※開始時間は予定です</p>
+            </div>
+
+            <div class="qr-section">
+                <div class="qr-code">
+                    <img src="images/site-qr.svg" alt="特設サイト QRコード">
+                </div>
+                <div class="qr-text">
+                    <p class="qr-label">60th Special Site</p>
+                    <p class="qr-url">60th.rta.nagoya</p>
+                    <p class="qr-desc">特設サイトでは記念事業の<br>最新情報をお届けします</p>
+                </div>
+            </div>
+
+            <p class="flyer-footer">名古屋青年税理士連盟 創立60周年記念事業実行委員会</p>
+        </div>
+    </div>
+</body>
+</html>
