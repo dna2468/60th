@@ -60,6 +60,24 @@
             pointer-events: none;
         }
 
+        /* Corner decorations */
+        .corner { position: absolute; width: 60px; height: 60px; }
+        .corner::before, .corner::after {
+            content: ''; position: absolute; background: var(--gold); opacity: 0.25;
+        }
+        .corner-tl { top: 25px; left: 25px; }
+        .corner-tl::before { top: 0; left: 0; width: 40px; height: 1px; }
+        .corner-tl::after { top: 0; left: 0; width: 1px; height: 40px; }
+        .corner-tr { top: 25px; right: 25px; }
+        .corner-tr::before { top: 0; right: 0; width: 40px; height: 1px; }
+        .corner-tr::after { top: 0; right: 0; width: 1px; height: 40px; }
+        .corner-bl { bottom: 25px; left: 25px; }
+        .corner-bl::before { bottom: 0; left: 0; width: 40px; height: 1px; }
+        .corner-bl::after { bottom: 0; left: 0; width: 1px; height: 40px; }
+        .corner-br { bottom: 25px; right: 25px; }
+        .corner-br::before { bottom: 0; right: 0; width: 40px; height: 1px; }
+        .corner-br::after { bottom: 0; right: 0; width: 1px; height: 40px; }
+
         /* Content */
         .content {
             position: relative;
@@ -226,6 +244,11 @@
     <div class="page">
         <div class="bg-pattern"></div>
         <div class="bg-glow"></div>
+
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
 
         <div class="content">
             <p class="org-name">名古屋青年税理士連盟</p>
