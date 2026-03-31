@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>60周年記念式典 フライヤー（ポップ版）</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        @page { size: A4 portrait; margin: 0; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --coral: #E8655A;
+            --coral-light: #F4918A;
+            --blue: #3A7BD5;
+            --blue-light: #6FA3E8;
+            --yellow: #F5C842;
+            --yellow-light: #FAE085;
+            --mint: #4ECDC4;
+            --purple: #9B6DCC;
+            --text: #333;
+            --text-light: #777;
+            --bg: #FFFFFF;
+            --font-sans: 'Noto Sans JP', sans-serif;
+            --font-serif: 'Shippori Mincho', serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: #aaa;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        @media print { body { background: none; padding: 0; } }
+
+        .page {
+            width: 210mm; height: 297mm;
+            background: var(--bg);
+            color: var(--text);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        @media print { .page { box-shadow: none; } }
+
+        /* ===== Confetti decoration ===== */
+        .confetti {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0; overflow: hidden;
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 10px; height: 10px;
+            border-radius: 2px;
+        }
+        .confetti-piece:nth-child(1) { background: var(--coral); top: 3%; left: 5%; transform: rotate(25deg); width: 12px; height: 5px; }
+        .confetti-piece:nth-child(2) { background: var(--blue); top: 8%; right: 8%; transform: rotate(-15deg); border-radius: 50%; width: 9px; height: 9px; }
+        .confetti-piece:nth-child(3) { background: var(--yellow); top: 5%; left: 25%; transform: rotate(45deg); width: 8px; height: 14px; border-radius: 0; }
+        .confetti-piece:nth-child(4) { background: var(--mint); top: 2%; right: 22%; transform: rotate(-30deg); width: 14px; height: 6px; }
+        .confetti-piece:nth-child(5) { background: var(--purple); top: 12%; left: 12%; transform: rotate(60deg); border-radius: 50%; width: 7px; height: 7px; }
+        .confetti-piece:nth-child(6) { background: var(--yellow); top: 10%; right: 15%; transform: rotate(20deg); width: 6px; height: 12px; }
+        .confetti-piece:nth-child(7) { background: var(--coral-light); bottom: 12%; left: 8%; transform: rotate(-40deg); width: 11px; height: 5px; }
+        .confetti-piece:nth-child(8) { background: var(--blue-light); bottom: 8%; right: 10%; transform: rotate(35deg); border-radius: 50%; width: 10px; height: 10px; }
+        .confetti-piece:nth-child(9) { background: var(--mint); bottom: 15%; left: 20%; transform: rotate(15deg); width: 7px; height: 13px; }
+        .confetti-piece:nth-child(10) { background: var(--purple); bottom: 5%; right: 25%; transform: rotate(-55deg); width: 13px; height: 5px; }
+        .confetti-piece:nth-child(11) { background: var(--yellow); bottom: 10%; left: 35%; transform: rotate(70deg); border-radius: 50%; width: 8px; height: 8px; }
+        .confetti-piece:nth-child(12) { background: var(--coral); top: 18%; right: 5%; transform: rotate(-20deg); width: 6px; height: 11px; }
+        .confetti-piece:nth-child(13) { background: var(--blue); top: 15%; left: 40%; transform: rotate(40deg); width: 9px; height: 4px; }
+        .confetti-piece:nth-child(14) { background: var(--mint); bottom: 3%; left: 50%; transform: rotate(-10deg); width: 12px; height: 6px; }
+        .confetti-piece:nth-child(15) { background: var(--yellow-light); top: 6%; left: 60%; transform: rotate(50deg); border-radius: 50%; width: 11px; height: 11px; }
+        .confetti-piece:nth-child(16) { background: var(--purple); top: 4%; right: 40%; transform: rotate(-45deg); width: 5px; height: 10px; }
+
+        /* ===== Top color bar ===== */
+        .top-bar {
+            height: 8px;
+            background: linear-gradient(90deg, var(--coral) 0%, var(--yellow) 25%, var(--mint) 50%, var(--blue) 75%, var(--purple) 100%);
+            flex-shrink: 0;
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            text-align: center;
+            padding: 45px 40px 35px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-org {
+            font-size: 10pt;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 2px;
+            margin-bottom: 5px;
+        }
+        .hero-number {
+            font-family: var(--font-serif);
+            font-size: 90pt;
+            font-weight: 600;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--coral) 0%, var(--yellow) 30%, var(--blue) 70%, var(--purple) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .hero-th {
+            font-family: var(--font-serif);
+            font-size: 30pt;
+            font-weight: 600;
+            color: var(--coral);
+            vertical-align: super;
+        }
+        .hero-anniversary {
+            font-size: 12pt;
+            font-weight: 900;
+            letter-spacing: 0.4em;
+            color: var(--blue);
+            text-transform: uppercase;
+        }
+        .hero-catch {
+            font-family: var(--font-serif);
+            font-size: 24pt;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-top: 22px;
+            color: var(--text);
+            position: relative;
+            display: inline-block;
+        }
+        .hero-catch::before, .hero-catch::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30px; height: 2px;
+            background: var(--yellow);
+            border-radius: 1px;
+        }
+        .hero-catch::before { left: -45px; }
+        .hero-catch::after { right: -45px; }
+
+        /* ===== Main ===== */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 40px 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Event card */
+        .event-card {
+            width: 100%;
+            max-width: 440px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 20px rgba(58,123,213,0.1);
+        }
+        .event-card-header {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--mint) 100%);
+            color: #fff;
+            text-align: center;
+            padding: 11px 20px;
+            font-size: 10pt;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+        }
+        .event-card-body {
+            padding: 25px 30px 22px;
+            text-align: center;
+            background: #fff;
+            border: 2px solid #eee;
+            border-top: none;
+            border-radius: 0 0 16px 16px;
+        }
+        .event-date {
+            font-family: var(--font-serif);
+            font-size: 22pt;
+            font-weight: 600;
+            color: var(--blue);
+            margin-bottom: 10px;
+        }
+        .event-venue {
+            font-family: var(--font-serif);
+            font-size: 12pt;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 3px;
+            white-space: nowrap;
+        }
+        .event-venue-icon {
+            display: inline-block;
+            width: 13px; height: 13px;
+            vertical-align: -1px;
+            margin-right: 3px;
+            fill: var(--coral);
+        }
+        .event-address {
+            font-size: 7.5pt;
+            color: var(--text-light);
+            margin-bottom: 18px;
+        }
+        .event-divider {
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg, var(--yellow), var(--coral));
+            margin: 0 auto 16px;
+            border-radius: 2px;
+        }
+        .schedule {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .schedule-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .schedule-time-box {
+            background: var(--blue);
+            color: #fff;
+            font-family: var(--font-serif);
+            font-size: 13pt;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+        .schedule-label {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .schedule-note {
+            font-size: 7pt;
+            color: var(--text-light);
+            margin-top: 12px;
+        }
+
+        /* QR section */
+        .qr-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: linear-gradient(135deg, #f8f4ff 0%, #f0f8ff 100%);
+            border: 2px solid #e8e4f0;
+            border-radius: 14px;
+            padding: 18px 25px;
+            max-width: 400px;
+            width: 100%;
+            margin-bottom: 22px;
+        }
+        .qr-code {
+            width: 80px; height: 80px;
+            flex-shrink: 0;
+            background: #fff;
+            border-radius: 8px;
+            padding: 5px;
+            border: 2px solid #e8e4f0;
+        }
+        .qr-code img { width: 100%; height: 100%; }
+        .qr-text { text-align: left; }
+        .qr-label {
+            font-size: 7.5pt;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            color: var(--purple);
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        .qr-url {
+            font-size: 12pt;
+            font-weight: 900;
+            color: var(--blue);
+        }
+        .qr-desc {
+            font-size: 7.5pt;
+            color: var(--text-light);
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .flyer-footer {
+            font-size: 7.5pt;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        /* Bottom bar */
+        .bottom-bar {
+            height: 8px;
+            background: linear-gradient(90deg, var(--purple) 0%, var(--blue) 25%, var(--mint) 50%, var(--yellow) 75%, var(--coral) 100%);
+            flex-shrink: 0;
+        }
+
+        /* Print button */
+        .print-btn {
+            position: fixed; top: 20px; right: 20px; z-index: 100;
+            background: var(--blue); color: #fff; border: none;
+            padding: 12px 24px; font-size: 14px; font-weight: 700;
+            border-radius: 6px; cursor: pointer; font-family: var(--font-sans);
+        }
+        .print-btn:hover { background: var(--blue-light); }
+        @media print { .print-btn { display: none; } }
+    </style>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()">PDF / 印刷</button>
+
+    <div class="page">
+        <div class="confetti">
+            <div class="confetti-piece"></div><div class="confetti-piece"></div>
+            <div class="confetti-piece"></div><div class="confetti-piece"></div>
+            <div class="confetti-piece"></div><div class="confetti-piece"></div>
+            <div class="confetti-piece"></div><div class="confetti-piece"></div>
+            <div class="confetti-piece"></div><div class="confetti-piece"></div>
+            <div class="confetti-piece"></div><div class="confetti-piece"></div>
+            <div class="confetti-piece"></div><div class="confetti-piece"></div>
+            <div class="confetti-piece"></div><div class="confetti-piece"></div>
+        </div>
+
+        <div class="top-bar"></div>
+
+        <!-- Hero -->
+        <div class="hero">
+            <p class="hero-org">名古屋青年税理士連盟</p>
+            <div class="hero-badge">
+                <span class="hero-number">60</span><span class="hero-th">th</span>
+            </div>
+            <div class="hero-anniversary">Anniversary</div>
+            <h1 class="hero-catch">ここから、次の60年。</h1>
+        </div>
+
+        <!-- Main -->
+        <div class="main">
+            <div class="event-card">
+                <div class="event-card-header">記念式典のご案内</div>
+                <div class="event-card-body">
+                    <p class="event-date">令和9年1月23日（土）</p>
+                    <p class="event-venue">
+                        <svg class="event-venue-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>ANAクラウンプラザホテルグランコート名古屋
+                    </p>
+                    <p class="event-address">〒460-0023 愛知県名古屋市中区金山町1-1-1</p>
+                    <div class="event-divider"></div>
+                    <div class="schedule">
+                        <div class="schedule-item">
+                            <span class="schedule-time-box">16:00〜</span>
+                            <span class="schedule-label">記念式典</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time-box">17:00〜</span>
+                            <span class="schedule-label">懇親会</span>
+                        </div>
+                    </div>
+                    <p class="schedule-note">※開始時間は予定です</p>
+                </div>
+            </div>
+
+            <div class="qr-section">
+                <div class="qr-code">
+                    <img src="images/site-qr.svg" alt="特設サイト QRコード">
+                </div>
+                <div class="qr-text">
+                    <p class="qr-label">60th Special Site</p>
+                    <p class="qr-url">60th.rta.nagoya</p>
+                    <p class="qr-desc">特設サイトでは記念事業の<br>最新情報をお届けします</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-bar"></div>
+    </div>
+</body>
+</html>

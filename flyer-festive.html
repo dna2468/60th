@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>60周年記念式典 フライヤー（フェスティブ版）</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        @page { size: A4 portrait; margin: 0; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --font-sans: 'Noto Sans JP', sans-serif;
+            --font-serif: 'Shippori Mincho', serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: #888;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        @media print { body { background: none; padding: 0; } }
+
+        .page {
+            width: 210mm; height: 297mm;
+            background: linear-gradient(160deg, #1a0533 0%, #0d1b3e 30%, #0a2a4a 50%, #0d3b3a 70%, #1a0533 100%);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        @media print { .page { box-shadow: none; } }
+
+        /* ===== Background effects ===== */
+        .bg-burst {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+            background:
+                radial-gradient(ellipse at 50% 30%, rgba(255,215,0,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 60%, rgba(255,50,100,0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 70%, rgba(50,150,255,0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 90%, rgba(150,50,255,0.06) 0%, transparent 40%);
+        }
+
+        /* Starburst behind 60 */
+        .starburst {
+            position: absolute;
+            top: 12%; left: 50%;
+            transform: translateX(-50%);
+            width: 500px; height: 500px;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .starburst::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 400px; height: 400px;
+            transform: translate(-50%, -50%);
+            background: conic-gradient(
+                from 0deg,
+                rgba(255,215,0,0.08) 0deg, transparent 15deg,
+                rgba(255,215,0,0.08) 20deg, transparent 35deg,
+                rgba(255,215,0,0.08) 40deg, transparent 55deg,
+                rgba(255,215,0,0.08) 60deg, transparent 75deg,
+                rgba(255,215,0,0.08) 80deg, transparent 95deg,
+                rgba(255,215,0,0.08) 100deg, transparent 115deg,
+                rgba(255,215,0,0.08) 120deg, transparent 135deg,
+                rgba(255,215,0,0.08) 140deg, transparent 155deg,
+                rgba(255,215,0,0.08) 160deg, transparent 175deg,
+                rgba(255,215,0,0.08) 180deg, transparent 195deg,
+                rgba(255,215,0,0.08) 200deg, transparent 215deg,
+                rgba(255,215,0,0.08) 220deg, transparent 235deg,
+                rgba(255,215,0,0.08) 240deg, transparent 255deg,
+                rgba(255,215,0,0.08) 260deg, transparent 275deg,
+                rgba(255,215,0,0.08) 280deg, transparent 295deg,
+                rgba(255,215,0,0.08) 300deg, transparent 315deg,
+                rgba(255,215,0,0.08) 320deg, transparent 335deg,
+                rgba(255,215,0,0.08) 340deg, transparent 355deg
+            );
+            border-radius: 50%;
+        }
+
+        /* Confetti - lots of them */
+        .confetti {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1; overflow: hidden;
+        }
+        .c { position: absolute; border-radius: 2px; }
+        /* Top area confetti */
+        .c1  { background: #FF4D6A; width: 14px; height: 5px; top: 2%; left: 3%; transform: rotate(25deg); }
+        .c2  { background: #FFD700; width: 8px; height: 8px; border-radius: 50%; top: 5%; left: 15%; }
+        .c3  { background: #4ECDC4; width: 6px; height: 16px; top: 3%; left: 28%; transform: rotate(-20deg); }
+        .c4  { background: #A855F7; width: 12px; height: 5px; top: 7%; left: 42%; transform: rotate(55deg); }
+        .c5  { background: #3B82F6; width: 10px; height: 10px; border-radius: 50%; top: 2%; left: 55%; }
+        .c6  { background: #FF4D6A; width: 7px; height: 14px; top: 6%; left: 68%; transform: rotate(35deg); }
+        .c7  { background: #FFD700; width: 15px; height: 5px; top: 3%; left: 78%; transform: rotate(-40deg); }
+        .c8  { background: #4ECDC4; width: 9px; height: 9px; border-radius: 50%; top: 8%; left: 90%; }
+        .c9  { background: #FF8C42; width: 11px; height: 4px; top: 10%; left: 7%; transform: rotate(70deg); }
+        .c10 { background: #A855F7; width: 7px; height: 13px; top: 1%; left: 95%; transform: rotate(15deg); }
+        /* Side confetti */
+        .c11 { background: #3B82F6; width: 13px; height: 5px; top: 20%; left: 2%; transform: rotate(-30deg); }
+        .c12 { background: #FFD700; width: 6px; height: 6px; border-radius: 50%; top: 25%; right: 4%; }
+        .c13 { background: #FF4D6A; width: 5px; height: 12px; top: 35%; left: 4%; transform: rotate(45deg); }
+        .c14 { background: #4ECDC4; width: 10px; height: 4px; top: 40%; right: 3%; transform: rotate(-15deg); }
+        .c15 { background: #FF8C42; width: 8px; height: 8px; border-radius: 50%; top: 50%; left: 3%; }
+        .c16 { background: #A855F7; width: 12px; height: 4px; top: 55%; right: 5%; transform: rotate(60deg); }
+        /* Bottom confetti */
+        .c17 { background: #FFD700; width: 14px; height: 5px; bottom: 8%; left: 5%; transform: rotate(-25deg); }
+        .c18 { background: #FF4D6A; width: 9px; height: 9px; border-radius: 50%; bottom: 5%; left: 18%; }
+        .c19 { background: #3B82F6; width: 6px; height: 15px; bottom: 10%; left: 32%; transform: rotate(30deg); }
+        .c20 { background: #4ECDC4; width: 11px; height: 4px; bottom: 3%; left: 45%; transform: rotate(-50deg); }
+        .c21 { background: #A855F7; width: 8px; height: 8px; border-radius: 50%; bottom: 7%; left: 60%; }
+        .c22 { background: #FF8C42; width: 13px; height: 5px; bottom: 4%; left: 72%; transform: rotate(40deg); }
+        .c23 { background: #FFD700; width: 7px; height: 14px; bottom: 9%; left: 85%; transform: rotate(-35deg); }
+        .c24 { background: #FF4D6A; width: 10px; height: 4px; bottom: 2%; right: 5%; transform: rotate(20deg); }
+        /* Extra sparkle */
+        .c25 { background: #FFD700; width: 5px; height: 5px; border-radius: 50%; top: 15%; left: 50%; box-shadow: 0 0 8px #FFD700; }
+        .c26 { background: #FFD700; width: 4px; height: 4px; border-radius: 50%; top: 30%; left: 92%; box-shadow: 0 0 6px #FFD700; }
+        .c27 { background: #FFD700; width: 4px; height: 4px; border-radius: 50%; bottom: 20%; left: 8%; box-shadow: 0 0 6px #FFD700; }
+        .c28 { background: #FFD700; width: 5px; height: 5px; border-radius: 50%; top: 45%; right: 8%; box-shadow: 0 0 8px #FFD700; }
+
+        /* ===== Top rainbow bar ===== */
+        .top-bar {
+            height: 6px; flex-shrink: 0; z-index: 2;
+            background: linear-gradient(90deg, #FF4D6A, #FF8C42, #FFD700, #4ECDC4, #3B82F6, #A855F7, #FF4D6A);
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            text-align: center;
+            padding: 40px 30px 30px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-org {
+            font-size: 11pt;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 15px;
+        }
+        .hero-number-wrap {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        .hero-number {
+            font-family: var(--font-serif);
+            font-size: 120pt;
+            font-weight: 600;
+            line-height: 1;
+            background: linear-gradient(180deg, #FFE78A 0%, #FFD700 30%, #DAA520 60%, #B8860B 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 20px rgba(255,215,0,0.4)) drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+        .hero-th {
+            font-family: var(--font-serif);
+            font-size: 36pt;
+            font-weight: 600;
+            background: linear-gradient(180deg, #FFE78A 0%, #FFD700 50%, #DAA520 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            vertical-align: super;
+        }
+        .hero-anniversary {
+            font-size: 14pt;
+            font-weight: 900;
+            letter-spacing: 0.5em;
+            background: linear-gradient(90deg, #FF4D6A, #FFD700, #4ECDC4, #3B82F6, #A855F7);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+        }
+        .hero-line {
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg, #FF4D6A, #FFD700, #4ECDC4);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+        .hero-catch {
+            font-family: var(--font-serif);
+            font-size: 26pt;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-shadow: 0 0 30px rgba(255,215,0,0.3);
+        }
+
+        /* ===== Main ===== */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 35px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Event card */
+        .event-card {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            border: 2px solid rgba(255,215,0,0.3);
+            box-shadow: 0 0 30px rgba(255,215,0,0.1), 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .event-card-header {
+            background: linear-gradient(135deg, #DAA520 0%, #FFD700 50%, #DAA520 100%);
+            color: #1a0533;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 11pt;
+            font-weight: 900;
+            letter-spacing: 0.25em;
+        }
+        .event-card-body {
+            padding: 25px 30px 20px;
+            text-align: center;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+        }
+        .event-date {
+            font-family: var(--font-serif);
+            font-size: 22pt;
+            font-weight: 600;
+            color: #FFD700;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(255,215,0,0.3);
+        }
+        .event-venue {
+            font-family: var(--font-serif);
+            font-size: 12pt;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 3px;
+            white-space: nowrap;
+        }
+        .event-venue-icon {
+            display: inline-block;
+            width: 13px; height: 13px;
+            vertical-align: -1px;
+            margin-right: 3px;
+            fill: #FF4D6A;
+        }
+        .event-address {
+            font-size: 7.5pt;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 18px;
+        }
+        .event-divider {
+            width: 80px; height: 2px;
+            background: linear-gradient(90deg, transparent, #FFD700, transparent);
+            margin: 0 auto 16px;
+        }
+        .schedule {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+        .schedule-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .schedule-time-box {
+            background: linear-gradient(135deg, #FF4D6A, #FF8C42);
+            color: #fff;
+            font-family: var(--font-serif);
+            font-size: 13pt;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(255,77,106,0.3);
+        }
+        .schedule-label {
+            font-size: 10pt;
+            font-weight: 700;
+            color: rgba(255,255,255,0.8);
+        }
+        .schedule-note {
+            font-size: 7pt;
+            color: rgba(255,255,255,0.35);
+            margin-top: 10px;
+        }
+
+        /* QR section */
+        .qr-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 14px;
+            padding: 16px 25px;
+            max-width: 400px;
+            width: 100%;
+            margin-bottom: 18px;
+            backdrop-filter: blur(10px);
+        }
+        .qr-code {
+            width: 78px; height: 78px;
+            flex-shrink: 0;
+            background: #fff;
+            border-radius: 8px;
+            padding: 5px;
+        }
+        .qr-code img { width: 100%; height: 100%; }
+        .qr-text { text-align: left; }
+        .qr-label {
+            font-size: 7.5pt;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            background: linear-gradient(90deg, #FF4D6A, #FFD700);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        .qr-url {
+            font-size: 12pt;
+            font-weight: 900;
+            color: #FFD700;
+        }
+        .qr-desc {
+            font-size: 7.5pt;
+            color: rgba(255,255,255,0.45);
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .flyer-footer {
+            font-size: 7.5pt;
+            color: rgba(255,255,255,0.3);
+            text-align: center;
+        }
+
+        /* Bottom bar */
+        .bottom-bar {
+            height: 6px; flex-shrink: 0; z-index: 2;
+            background: linear-gradient(90deg, #A855F7, #3B82F6, #4ECDC4, #FFD700, #FF8C42, #FF4D6A);
+        }
+
+        /* Print button */
+        .print-btn {
+            position: fixed; top: 20px; right: 20px; z-index: 100;
+            background: linear-gradient(135deg, #FF4D6A, #FF8C42);
+            color: #fff; border: none;
+            padding: 12px 24px; font-size: 14px; font-weight: 700;
+            border-radius: 6px; cursor: pointer; font-family: var(--font-sans);
+        }
+        .print-btn:hover { opacity: 0.9; }
+        @media print { .print-btn { display: none; } }
+    </style>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()">PDF / 印刷</button>
+
+    <div class="page">
+        <div class="bg-burst"></div>
+        <div class="starburst"></div>
+        <div class="confetti">
+            <div class="c c1"></div><div class="c c2"></div><div class="c c3"></div><div class="c c4"></div>
+            <div class="c c5"></div><div class="c c6"></div><div class="c c7"></div><div class="c c8"></div>
+            <div class="c c9"></div><div class="c c10"></div><div class="c c11"></div><div class="c c12"></div>
+            <div class="c c13"></div><div class="c c14"></div><div class="c c15"></div><div class="c c16"></div>
+            <div class="c c17"></div><div class="c c18"></div><div class="c c19"></div><div class="c c20"></div>
+            <div class="c c21"></div><div class="c c22"></div><div class="c c23"></div><div class="c c24"></div>
+            <div class="c c25"></div><div class="c c26"></div><div class="c c27"></div><div class="c c28"></div>
+        </div>
+
+        <div class="top-bar"></div>
+
+        <div class="hero">
+            <p class="hero-org">名古屋青年税理士連盟</p>
+            <div class="hero-number-wrap">
+                <span class="hero-number">60</span><span class="hero-th">th</span>
+            </div>
+            <div class="hero-anniversary">Anniversary</div>
+            <div class="hero-line"></div>
+            <h1 class="hero-catch">ここから、次の60年。</h1>
+        </div>
+
+        <div class="main">
+            <div class="event-card">
+                <div class="event-card-header">記念式典のご案内</div>
+                <div class="event-card-body">
+                    <p class="event-date">令和9年1月23日（土）</p>
+                    <p class="event-venue">
+                        <svg class="event-venue-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>ANAクラウンプラザホテルグランコート名古屋
+                    </p>
+                    <p class="event-address">〒460-0023 愛知県名古屋市中区金山町1-1-1</p>
+                    <div class="event-divider"></div>
+                    <div class="schedule">
+                        <div class="schedule-item">
+                            <span class="schedule-time-box">16:00〜</span>
+                            <span class="schedule-label">記念式典</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time-box">17:00〜</span>
+                            <span class="schedule-label">懇親会</span>
+                        </div>
+                    </div>
+                    <p class="schedule-note">※開始時間は予定です</p>
+                </div>
+            </div>
+
+            <div class="qr-section">
+                <div class="qr-code">
+                    <img src="images/site-qr.svg" alt="特設サイト QRコード">
+                </div>
+                <div class="qr-text">
+                    <p class="qr-label">60th Special Site</p>
+                    <p class="qr-url">60th.rta.nagoya</p>
+                    <p class="qr-desc">特設サイトでは記念事業の<br>最新情報をお届けします</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-bar"></div>
+    </div>
+</body>
+</html>
